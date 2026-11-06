@@ -235,6 +235,8 @@ document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==
 document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.page===initialPage));
 history.replaceState({portfolioPage:initialPage},'',initialPage==='home'?location.pathname+location.search:'#'+initialPage);
 window.addEventListener('popstate',event=>{
+ const modal=document.getElementById('projectModal');
+ if(modal?.classList.contains('open'))closeProjectModal(null,true);
  const page=event.state?.portfolioPage||'home';
  showPage(page,{fromHistory:true});
 });
@@ -255,8 +257,9 @@ function openPortfolioCase(card, category){
  const tagBox=document.getElementById('projectModalTags');tagBox.replaceChildren();
  tags.forEach(label=>{const span=document.createElement('span');span.className='tag';span.textContent=label;tagBox.appendChild(span)});
  modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+ history.pushState({portfolioPage:document.querySelector('.page.active')?.id||'home',portfolioModal:true},'',location.pathname+location.search+'#case');
 }
-function closeProjectModal(event){const modal=document.getElementById('projectModal');if(!modal)return;if(event&&event.target!==modal)return;modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+function closeProjectModal(event,fromHistory=false){const modal=document.getElementById('projectModal');if(!modal)return;if(event&&event.target!==modal)return;modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(!fromHistory&&history.state?.portfolioModal)history.back();}
 [['.event-case','event'],['.producing-case','producing'],['.directing-case','directing']].forEach(([selector,category])=>{
  document.querySelectorAll(selector).forEach(card=>{card.addEventListener('click',()=>openPortfolioCase(card,category));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPortfolioCase(card,category);}});});
 });
