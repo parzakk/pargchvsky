@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Портфолио Максима — event, producing, directing.">
+<title>Максим — Portfolio</title>
+<style>
+:root{--bg:#101010;--panel:#191919;--text:#f4f1eb;--muted:#aaa69f;--line:#343434;--accent:#d8ff3e}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1240px,calc(100% - 48px));margin:auto}
+header{position:sticky;top:0;z-index:10;background:rgba(16,16,16,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{height:78px;display:flex;align-items:center;justify-content:flex-start;gap:24px}.brand{font-weight:800;letter-spacing:-.06em;font-size:24px;text-transform:lowercase}.brand span{color:var(--accent)}
+nav{display:flex;gap:8px;align-items:center}.tab{border:1px solid transparent;color:var(--muted);background:transparent;padding:12px 16px;border-radius:999px;cursor:pointer;transition:.2s}.tab:hover{color:var(--text);border-color:var(--line)}.tab.active{background:var(--accent);color:#111;border-color:var(--accent);font-weight:700}
+.hero{padding:86px 0 70px;min-height:420px;display:grid;grid-template-columns:1fr;gap:42px;align-items:end}.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}.hero h1{font-size:clamp(58px,9vw,126px);letter-spacing:-.085em;line-height:.83;margin:22px 0 28px;font-weight:800}.hero h1 em{font-style:normal;color:var(--accent)}.intro{max-width:440px;color:var(--muted);font-size:17px;line-height:1.65;margin:0 0 28px}.hero-right{display:flex;flex-direction:column;gap:14px}.hero-card{min-height:230px;background:linear-gradient(140deg,#292929,#151515 65%);border:1px solid var(--line);padding:22px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.hero-card:after{content:"";position:absolute;width:230px;height:230px;border:1px solid #555;border-radius:50%;right:-48px;top:-48px;box-shadow:0 0 0 28px #202020,0 0 0 56px #191919}.hero-card .big{font-size:54px;letter-spacing:-.08em;font-weight:800;position:relative;z-index:1}.hero-card small{color:var(--muted);position:relative;z-index:1;letter-spacing:.12em;text-transform:uppercase}.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 0 86px}.stat{padding:22px 18px;border-right:1px solid var(--line)}.stat:last-child{border:0}.stat strong{display:block;font-size:30px;letter-spacing:-.06em}.stat span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}.section-head h2{font-size:clamp(36px,5vw,64px);letter-spacing:-.075em;margin:10px 0 0}.section-head p{max-width:360px;color:var(--muted);line-height:1.6;margin:0}.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.project{border:1px solid var(--line);background:var(--panel);overflow:hidden;transition:transform .25s,border-color .25s}.project:hover{transform:translateY(-4px);border-color:#777}.project-art{height:280px;position:relative;overflow:hidden;background:#242424;display:flex;align-items:center;justify-content:center}.project-art:before,.project-art:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.22);border-radius:50%;width:220px;height:220px}.project-art:after{width:320px;height:320px}.project-art.event{background:linear-gradient(135deg,#473f31,#161616 72%)}.project-art.producing{background:linear-gradient(135deg,#243c3c,#141414 72%)}.project-art.directing{background:linear-gradient(135deg,#47312e,#141414 72%)}.project-art .art-label{position:relative;z-index:1;font-size:clamp(36px,6vw,68px);font-weight:800;letter-spacing:-.09em;text-transform:uppercase}.project-art .index{position:absolute;left:20px;top:20px;color:#fff9;font-size:12px;letter-spacing:.14em}.project-art .placeholder{position:absolute;bottom:18px;right:18px;color:#fff8;font-size:10px;letter-spacing:.12em;text-transform:uppercase}.project-info{padding:22px}.project-meta{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.1em}.project h3{font-size:27px;letter-spacing:-.05em;margin:14px 0 9px}.project p{color:var(--muted);line-height:1.6;margin:0;max-width:600px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.tag{font-size:11px;padding:7px 10px;border:1px solid #414141;border-radius:999px;color:#d2d0ca}
+.about{display:grid;grid-template-columns:.7fr 1.3fr;gap:60px;padding:100px 0}.about h2{font-size:clamp(40px,6vw,72px);letter-spacing:-.08em;line-height:.9;margin:12px 0}.about-copy{font-size:19px;line-height:1.7;color:var(--muted);max-width:700px}.about-copy strong{color:var(--text)}.contact{padding:48px;border:1px solid var(--line);background:var(--panel);display:flex;justify-content:space-between;align-items:center;gap:30px;margin-bottom:70px}.contact h2{font-size:clamp(34px,5vw,58px);letter-spacing:-.07em;margin:8px 0}.contact p{color:var(--muted);margin:0}.contact-links{display:flex;flex-wrap:wrap;gap:10px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 18px;background:var(--accent);color:#111;border:1px solid var(--accent);border-radius:999px;font-weight:700;cursor:pointer}.btn.secondary{background:transparent;color:var(--text);border-color:var(--line)}footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:20px}.page{display:none}.page.active{display:block;animation:appear .35s ease}@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.page-intro{padding:76px 0 46px}.page-intro h1{font-size:clamp(64px,11vw,140px);line-height:.8;letter-spacing:-.09em;margin:20px 0 28px}.page-intro h1 span{color:var(--accent)}.page-intro p{max-width:650px;color:var(--muted);font-size:18px;line-height:1.7}.page-note{border:1px dashed #555;padding:18px 20px;margin:26px 0 60px;color:var(--muted);font-size:13px;line-height:1.6}.page-note strong{color:var(--text)}.empty-card{border:1px dashed #555;min-height:250px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:30px;color:var(--muted)}.empty-card b{color:var(--text);font-size:22px;margin-bottom:8px}
+@media(max-width:760px){.wrap{width:min(100% - 30px,1240px)}.nav{height:72px;min-height:72px;align-items:center;padding:0;flex-direction:row;gap:14px}nav{width:100%;overflow-x:auto;padding-bottom:2px}.tab{white-space:nowrap;padding:10px 13px}.hero{padding:58px 0 48px;grid-template-columns:1fr;gap:28px;min-height:auto}.hero h1{font-size:clamp(58px,17vw,100px)}.hero-card{min-height:170px}.stats{margin-bottom:60px}.stat{padding:16px 10px}.stat strong{font-size:24px}.stat span{font-size:9px}.section-head{align-items:flex-start;flex-direction:column}.projects{grid-template-columns:1fr}.project-art{height:235px}.about{grid-template-columns:1fr;gap:20px;padding:70px 0}.contact{padding:26px;align-items:flex-start;flex-direction:column}.page-intro{padding:56px 0 32px}.page-intro h1{font-size:clamp(60px,17vw,100px)}footer{flex-direction:column}}
+
+/* Home category cards: balanced editorial row, equal heights and shared rhythm */
+.category-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:16px;margin-bottom:76px}
+.category-grid .project{display:flex;flex-direction:column;min-width:0;border-radius:3px}
+.category-grid .project-art{height:clamp(180px,21vw,260px);flex:0 0 auto}
+.category-grid .project-art .art-label{font-size:clamp(30px,3.7vw,54px);text-align:center;overflow-wrap:anywhere}
+.category-grid .project-info{display:flex;flex:1;flex-direction:column;padding:20px}
+.category-grid .project h3{font-size:clamp(21px,2vw,27px);line-height:1.08;min-height:2.15em}
+.category-grid .project p{font-size:14px;line-height:1.55}
+.category-grid .tags{margin-top:auto;padding-top:16px}
+.category-grid .project:hover{border-color:rgba(216,255,62,.6);box-shadow:0 12px 34px rgba(0,0,0,.22)}
+@media(max-width:900px){
+ .category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .category-grid .project:last-child{grid-column:1 / -1}
+ .category-grid .project:last-child .project-art{height:220px}
+}
+@media(max-width:600px){
+ .category-grid{grid-template-columns:1fr;gap:14px;margin-bottom:55px}
+ .category-grid .project:last-child{grid-column:auto}
+ .category-grid .project-art{height:220px}
+ .category-grid .project-art .art-label{font-size:48px}
+ .category-grid .project h3{min-height:0;font-size:25px}
+}
+
+
+.event-case{cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s}
+.event-case:hover{border-color:rgba(216,255,62,.65);transform:translateY(-3px);box-shadow:0 14px 35px rgba(0,0,0,.22)}
+.event-case:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.modal-backdrop{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(5,5,5,.74);backdrop-filter:blur(10px);opacity:0;visibility:hidden;transition:opacity .22s,visibility .22s}
+.modal-backdrop.open{opacity:1;visibility:visible}
+.mini-card{position:relative;width:min(560px,100%);max-height:90vh;overflow:auto;border:1px solid rgba(216,255,62,.42);background:#171717;box-shadow:0 24px 80px rgba(0,0,0,.55);transform:translateY(14px) scale(.985);transition:transform .22s}
+.modal-backdrop.open .mini-card{transform:translateY(0) scale(1)}
+.modal-close{position:absolute;right:14px;top:12px;z-index:2;width:38px;height:38px;border:1px solid rgba(255,255,255,.3);border-radius:50%;background:rgba(0,0,0,.35);color:white;font-size:28px;line-height:1;cursor:pointer}
+.mini-card-visual{height:210px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 48%,rgba(216,255,62,.13),transparent 43%),linear-gradient(135deg,#35352c,#141414)}
+.mini-card-visual:before,.mini-card-visual:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.15);border-radius:50%;width:210px;height:210px}
+.mini-card-visual:after{width:300px;height:300px}
+.mini-kicker{position:absolute;left:22px;top:20px;color:rgba(255,255,255,.58);font-size:11px;letter-spacing:.15em}
+.mini-title{font-size:clamp(42px,8vw,72px);font-weight:800;letter-spacing:-.09em;z-index:1;text-align:center}
+.mini-caption{position:absolute;bottom:18px;left:22px;color:rgba(255,255,255,.55);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.mini-card-body{padding:25px}
+.mini-card-body h2{font-size:31px;letter-spacing:-.06em;margin:12px 0}
+.mini-card-body p{color:var(--muted);line-height:1.65;margin:0}
+.mini-card-body .tags{margin-top:18px}
+.mini-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+@media(max-width:600px){.mini-card-visual{height:175px}.mini-card-body{padding:20px}.mini-card-body h2{font-size:26px}}
+
+
+.producing-case,.directing-case{cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s}
+.producing-case:hover,.directing-case:hover{border-color:rgba(216,255,62,.65);transform:translateY(-3px);box-shadow:0 14px 35px rgba(0,0,0,.22)}
+.producing-case:focus-visible,.directing-case:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+
+/* admin styles omitted in public build */ .admin-launch{margin-left:auto;border:1px solid rgba(216,255,62,.45);background:rgba(216,255,62,.07);color:var(--accent);padding:10px 14px;font-size:11px;letter-spacing:.12em;cursor:pointer}
+.admin-overlay{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.78);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:18px}
+.admin-overlay.open{display:flex}
+.admin-panel{width:min(1000px,100%);max-height:92vh;overflow:auto;background:#171717;border:1px solid #454545;padding:25px;box-shadow:0 25px 90px #000}
+.admin-head{display:flex;align-items:center;justify-content:space-between;position:relative;padding-right:48px}
+.admin-head h2{font-size:30px;letter-spacing:-.06em;margin:8px 0}
+.admin-note{color:#aaa;font-size:12px;line-height:1.5;max-width:760px}
+.admin-columns{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(300px,1.2fr);gap:24px;margin-top:22px}
+.admin-panel label{display:block;font-size:12px;color:#aaa;margin-bottom:12px}
+.admin-panel input:not([type=file]),.admin-panel textarea,.admin-panel select{display:block;width:100%;margin-top:7px;padding:11px;background:#222;color:#f4f1eb;border:1px solid #3a3a3a;border-radius:0;font:inherit;font-size:13px}
+.admin-project-list{display:grid;gap:7px;margin:12px 0;max-height:300px;overflow:auto}
+.admin-project-item{padding:12px;text-align:left;background:#222;color:#eee;border:1px solid #393939;cursor:pointer}
+.admin-project-item.active{border-color:var(--accent);color:var(--accent)}
+.admin-primary,.admin-danger,.admin-footer button,.import-button{padding:11px 14px;background:var(--accent);color:#111;border:0;font-weight:700;font-size:12px;cursor:pointer}
+.admin-danger{background:transparent;color:#ff8585;border:1px solid #673b3b}
+.admin-form{border-left:1px solid #333;padding-left:22px}
+.admin-form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.admin-status{font-size:12px;color:var(--accent);margin-top:10px}
+.admin-photo{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.admin-photo input[type=file]{max-width:100%;margin-top:8px;color:#aaa}.admin-site-fields{border-top:1px solid #333;margin-top:24px;padding-top:18px}.admin-site-fields h3{font-size:18px;margin:0 0 12px}.admin-site-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.admin-site-grid label{margin:0}.admin-photo-preview{width:100px;height:65px;object-fit:cover;border:1px solid #444;display:none}
+.admin-footer{display:flex;gap:9px;flex-wrap:wrap;border-top:1px solid #333;margin-top:22px;padding-top:16px}
+.admin-footer button,.import-button{background:#252525;color:#eee;border:1px solid #444}
+.import-button input{display:none!important}
+@media(max-width:700px){.admin-columns{grid-template-columns:1fr}.admin-form{border-left:0;border-top:1px solid #333;padding:20px 0 0}.admin-panel{padding:18px}.admin-head h2{font-size:25px}}
+
+.project-cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.82;z-index:0}.project-art .art-label,.project-art .index,.project-art .placeholder{z-index:1;position:relative}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#" onclick="showPage('home');return false">pargchvsky</a>
+  </div>
+</header>
+<main class="wrap">
+  <section class="page active" id="home">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Portfolio · 2026</div>
+        <h1>ДЕЛАЮ<br><em>ПРОЕКТЫ.</em></h1>
+        <p class="intro">Ивенты, продюсирование и режиссура. Организую процессы, собираю команды и превращаю идеи в реальные проекты.</p>
+        <button class="btn" onclick="showPage('event')">Смотреть проекты ↗</button>
+      </div>
+    </div>
+    <div class="section-head"><div><div class="eyebrow">Selected work</div><h2>Три направления.<br>Один подход.</h2></div><p>Выбери раздел, чтобы посмотреть проекты, задачи и мой вклад в результат.</p></div>
+    <div class="projects category-grid">
+      <article class="project" onclick="showPage('event')" style="cursor:pointer"><div class="project-art event"><span class="index">01 / CATEGORY</span><span class="art-label">EVENT</span><span class="placeholder">Open section ↗</span></div><div class="project-info"><div class="project-meta"><span>Организация</span><span>01</span></div><h3>События и команды</h3><p>Организация мероприятий, координация участников и работа с процессами.</p><div class="tags"><span class="tag">Event management</span><span class="tag">Coordination</span></div></div></article>
+      <article class="project" onclick="showPage('producing')" style="cursor:pointer"><div class="project-art producing"><span class="index">02 / CATEGORY</span><span class="art-label">PRODUCING</span><span class="placeholder">Open section ↗</span></div><div class="project-info"><div class="project-meta"><span>Производство</span><span>02</span></div><h3>От идеи до съёмки</h3><p>Подготовка съёмок, организация команды и решение производственных задач.</p><div class="tags"><span class="tag">Music videos</span><span class="tag">Production</span></div></div></article>
+      <article class="project" onclick="showPage('directing')" style="cursor:pointer"><div class="project-art directing"><span class="index">03 / CATEGORY</span><span class="art-label">DIRECTING</span><span class="placeholder">Open section ↗</span></div><div class="project-info"><div class="project-meta"><span>Визуальный язык</span><span>03</span></div><h3>Истории в кадре</h3><p>Режиссёрские работы, визуальные концепции и проекты, над которыми хочется работать дальше.</p><div class="tags"><span class="tag">Visual storytelling</span><span class="tag">Direction</span></div></div></article>
+    </div>
+    <section class="contact"><div><div class="eyebrow">Have a project?</div><h2>Давай обсудим.</h2><p>Открыт к предложениям о работе и сотрудничеству.</p></div><div class="contact-links"><a class="btn" href="https://t.me/" target="_blank" rel="noreferrer">Telegram ↗</a><a class="btn secondary" href="mailto:hello@example.com">Email ↗</a></div></section>
+  </section>
+
+  <section class="page" id="event">
+    <div class="page-intro"><div class="eyebrow">01 — Event</div><h1>СОБЫТИЯ<br><span>В ДВИЖЕНИИ.</span></h1><p>Организация мероприятий — это люди, сроки, логистика и десятки процессов, которые должны сойтись в один момент. Здесь будут проекты, в которых я отвечал за организацию и координацию.</p></div>
+    <div class="page-note"><strong>Кейсы для заполнения:</strong> HSE Unity — организация одного дня трёхдневного мероприятия, около 700 участников; «Посвят» — техническое направление мероприятия примерно на 450 человек. Добавим конкретные задачи, команду и результаты после уточнения твоей роли.</div>
+    <div class="projects">
+      <article class="project event-case" tabindex="0" role="button" aria-label="Открыть кейс мероприятия"><div class="project-art event"><span class="index">CASE 01</span><span class="art-label">HSE UNITY</span><span class="placeholder">Фото мероприятия</span></div><div class="project-info"><div class="project-meta"><span>Event coordination</span><span>HSE</span></div><h3>HSE Unity</h3><p>Организация одного дня трёхдневного мероприятия. Подготовка велась в течение месяца.</p><div class="tags"><span class="tag">700 участников мероприятия</span><span class="tag">Координация</span><span class="tag">Организация</span></div></div></article>
+      <article class="project event-case" tabindex="0" role="button" aria-label="Открыть кейс мероприятия"><div class="project-art event"><span class="index">CASE 02</span><span class="art-label">ПОСВЯТ</span><span class="placeholder">Фото / backstage</span></div><div class="project-info"><div class="project-meta"><span>Technical direction</span><span>Event</span></div><h3>Посвят</h3><p>Работа техническим директором мероприятия для аудитории около 450 человек.</p><div class="tags"><span class="tag">Техническая координация</span><span class="tag">Event production</span></div></div></article>
+    </div>
+  </section>
+
+  <section class="page" id="producing">
+    <div class="page-intro"><div class="eyebrow">02 — Producing</div><h1>ОТ ИДЕИ<br><span>ДО СЪЁМКИ.</span></h1><p>Продюсирование — это превратить творческую задачу в выполнимый план: собрать людей, подготовить площадку, продумать ресурсы и обеспечить движение проекта.</p></div>
+    <div class="page-note"><strong>Кейсы для заполнения:</strong> организация съёмок музыкальных клипов, включая работу над проектом с артистом ANIKV. Добавим ссылки на клипы, твою конкретную роль, этапы подготовки и список задач.</div>
+    <div class="projects">
+      <article class="project producing-case" tabindex="0" role="button" aria-label="Открыть кейс проекта"><div class="project-art producing"><span class="index">CASE 01</span><span class="art-label">MUSIC VIDEO</span><span class="placeholder">Кадр из клипа</span></div><div class="project-info"><div class="project-meta"><span>Music video production</span><span>01</span></div><h3>Продакшен музыкального клипа</h3><p>Участие в подготовке съёмки: координация организационных задач и работа с производственным процессом.</p><div class="tags"><span class="tag">Pre-production</span><span class="tag">Shoot coordination</span></div></div></article>
+      <article class="project producing-case" tabindex="0" role="button" aria-label="Открыть кейс проекта"><div class="project-art producing"><span class="index">CASE 02</span><span class="art-label">BACKSTAGE</span><span class="placeholder">Фото со съёмочной площадки</span></div><div class="project-info"><div class="project-meta"><span>Production workflow</span><span>02</span></div><h3>Подготовка съёмочного процесса</h3><p>Отдельный кейс для проекта, где можно показать подготовку, команду, оборудование, тайминг и решённые задачи.</p><div class="tags"><span class="tag">Planning</span><span class="tag">Budgeting</span><span class="tag">Teamwork</span></div></div></article>
+    </div>
+  </section>
+
+  <section class="page" id="directing">
+    <div class="page-intro"><div class="eyebrow">03 — Directing</div><h1>ИСТОРИИ<br><span>В КАДРЕ.</span></h1><p>Визуальные идеи, работа с атмосферой и построение истории. В этом разделе соберём режиссёрские работы, музыкальные клипы, раскадровки и концепции.</p></div>
+    <div class="page-note"><strong>Здесь нужны твои авторские материалы:</strong> ссылки на клипы или видео, в которых ты выступал режиссёром, режиссёрские концепции, раскадровки и moodboard. Если в проекте ты был продюсером, а не режиссёром, укажем это точно.</div>
+    <div class="projects">
+      <article class="project directing-case" tabindex="0" role="button" aria-label="Открыть кейс проекта"><div class="project-art directing"><span class="index">CASE 01</span><span class="art-label">FILM / CLIP</span><span class="placeholder">Вставить видео</span></div><div class="project-info"><div class="project-meta"><span>Direction</span><span>01</span></div><h3>Режиссёрская работа</h3><p>Добавь сюда клип или видео, где ты отвечал за режиссуру. Рядом укажем задачу, идею и твою роль.</p><div class="tags"><span class="tag">Concept</span><span class="tag">Visual language</span></div></div></article>
+      <article class="project directing-case" tabindex="0" role="button" aria-label="Открыть кейс проекта"><div class="project-art directing"><span class="index">CASE 02</span><span class="art-label">MOODBOARD</span><span class="placeholder">Вставить раскадровку</span></div><div class="project-info"><div class="project-meta"><span>Pre-production</span><span>02</span></div><h3>Концепция и раскадровка</h3><p>Место для визуальных референсов, режиссёрского тритмента или раскадровки проекта.</p><div class="tags"><span class="tag">Storytelling</span><span class="tag">Moodboard</span></div></div></article>
+    </div>
+  </section>
+
+<div class="modal-backdrop" id="projectModal" aria-hidden="true" onclick="closeProjectModal(event)">
+  <section class="mini-card" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+    <button class="modal-close" aria-label="Закрыть" onclick="closeProjectModal()">×</button>
+    <div class="mini-card-visual">
+      <span class="mini-kicker" id="projectModalKicker">EVENT / CASE</span>
+      <span class="mini-title" id="projectModalVisual">EVENT</span>
+      <span class="mini-caption" id="projectModalCaption">Мероприятие</span>
+    </div>
+    <div class="mini-card-body">
+      <div class="project-meta"><span id="projectModalMeta">Event project</span><span>CASE</span></div>
+      <h2 id="projectModalTitle">Название мероприятия</h2>
+      <p id="projectModalDescription">Описание кейса.</p>
+      <div class="tags" id="projectModalTags"></div>
+      <div class="mini-actions"><button class="btn secondary" onclick="closeProjectModal()">Назад к мероприятиям</button></div>
+    </div>
+  </section>
+</div>
+
+
+!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Портфолио Максима — event, producing, directing.">
+<title>Максим — Portfolio</title>
+<style>
+:root{--bg:#101010;--panel:#191919;--text:#f4f1eb;--muted:#aaa69f;--line:#343434;--accent:#d8ff3e}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1240px,calc(100% - 48px));margin:auto}
+header{position:sticky;top:0;z-index:10;background:rgba(16,16,16,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{height:78px;display:flex;align-items:center;justify-content:flex-start;gap:24px}.brand{font-weight:800;letter-spacing:-.06em;font-size:24px;text-transform:lowercase}.brand span{color:var(--accent)}
+nav{display:flex;gap:8px;align-items:center}.tab{border:1px solid transparent;color:var(--muted);background:transparent;padding:12px 16px;border-radius:999px;cursor:pointer;transition:.2s}.tab:hover{color:var(--text);border-color:var(--line)}.tab.active{background:var(--accent);color:#111;border-color:var(--accent);font-weight:700}
+.hero{padding:86px 0 70px;min-height:420px;display:grid;grid-template-columns:1fr;gap:42px;align-items:end}.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}.hero h1{font-size:clamp(58px,9vw,126px);letter-spacing:-.085em;line-height:.83;margin:22px 0 28px;font-weight:800}.hero h1 em{font-style:normal;color:var(--accent)}.intro{max-width:440px;color:var(--muted);font-size:17px;line-height:1.65;margin:0 0 28px}.hero-right{display:flex;flex-direction:column;gap:14px}.hero-card{min-height:230px;background:linear-gradient(140deg,#292929,#151515 65%);border:1px solid var(--line);padding:22px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.hero-card:after{content:"";position:absolute;width:230px;height:230px;border:1px solid #555;border-radius:50%;right:-48px;top:-48px;box-shadow:0 0 0 28px #202020,0 0 0 56px #191919}.hero-card .big{font-size:54px;letter-spacing:-.08em;font-weight:800;position:relative;z-index:1}.hero-card small{color:var(--muted);position:relative;z-index:1;letter-spacing:.12em;text-transform:uppercase}.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 0 86px}.stat{padding:22px 18px;border-right:1px solid var(--line)}.stat:last-child{border:0}.stat strong{display:block;font-size:30px;letter-spacing:-.06em}.stat span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}.section-head h2{font-size:clamp(36px,5vw,64px);letter-spacing:-.075em;margin:10px 0 0}.section-head p{max-width:360px;color:var(--muted);line-height:1.6;margin:0}.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.project{border:1px solid var(--line);background:var(--panel);overflow:hidden;transition:transform .25s,border-color .25s}.project:hover{transform:translateY(-4px);border-color:#777}.project-art{height:280px;position:relative;overflow:hidden;background:#242424;display:flex;align-items:center;justify-content:center}.project-art:before,.project-art:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.22);border-radius:50%;width:220px;height:220px}.project-art:after{width:320px;height:320px}.project-art.event{background:linear-gradient(135deg,#473f31,#161616 72%)}.project-art.producing{background:linear-gradient(135deg,#243c3c,#141414 72%)}.project-art.directing{background:linear-gradient(135deg,#47312e,#141414 72%)}.project-art .art-label{position:relative;z-index:1;font-size:clamp(36px,6vw,68px);font-weight:800;letter-spacing:-.09em;text-transform:uppercase}.project-art .index{position:absolute;left:20px;top:20px;color:#fff9;font-size:12px;letter-spacing:.14em}.project-art .placeholder{position:absolute;bottom:18px;right:18px;color:#fff8;font-size:10px;letter-spacing:.12em;text-transform:uppercase}.project-info{padding:22px}.project-meta{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.1em}.project h3{font-size:27px;letter-spacing:-.05em;margin:14px 0 9px}.project p{color:var(--muted);line-height:1.6;margin:0;max-width:600px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.tag{font-size:11px;padding:7px 10px;border:1px solid #414141;border-radius:999px;color:#d2d0ca}
+.about{display:grid;grid-template-columns:.7fr 1.3fr;gap:60px;padding:100px 0}.about h2{font-size:clamp(40px,6vw,72px);letter-spacing:-.08em;line-height:.9;margin:12px 0}.about-copy{font-size:19px;line-height:1.7;color:var(--muted);max-width:700px}.about-copy strong{color:var(--text)}.contact{padding:48px;border:1px solid var(--line);background:var(--panel);display:flex;justify-content:space-between;align-items:center;gap:30px;margin-bottom:70px}.contact h2{font-size:clamp(34px,5vw,58px);letter-spacing:-.07em;margin:8px 0}.contact p{color:var(--muted);margin:0}.contact-links{display:flex;flex-wrap:wrap;gap:10px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 18px;background:var(--accent);color:#111;border:1px solid var(--accent);border-radius:999px;font-weight:700;cursor:pointer}.btn.secondary{background:transparent;color:var(--text);border-color:var(--line)}footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:20px}.page{display:none}.page.active{display:block;animation:appear .35s ease}@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.page-intro{padding:76px 0 46px}.page-intro h1{font-size:clamp(64px,11vw,140px);line-height:.8;letter-spacing:-.09em;margin:20px 0 28px}.page-intro h1 span{color:var(--accent)}.page-intro p{max-width:650px;color:var(--muted);font-size:18px;line-height:1.7}.page-note{border:1px dashed #555;padding:18px 20px;margin:26px 0 60px;color:var(--muted);font-size:13px;line-height:1.6}.page-note strong{color:var(--text)}.empty-card{border:1px dashed #555;min-height:250px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:30px;color:var(--muted)}.empty-card b{color:var(--text);font-size:22px;margin-bottom:8px}
+@media(max-width:760px){.wrap{width:min(100% - 30px,1240px)}.nav{height:72px;min-height:72px;align-items:center;padding:0;flex-direction:row;gap:14px}nav{width:100%;overflow-x:auto;padding-bottom:2px}.tab{white-space:nowrap;padding:10px 13px}.hero{padding:58px 0 48px;grid-template-columns:1fr;gap:28px;min-height:auto}.hero h1{font-size:clamp(58px,17vw,100px)}.hero-card{min-height:170px}.stats{margin-bottom:60px}.stat{padding:16px 10px}.stat strong{font-size:24px}.stat span{font-size:9px}.section-head{align-items:flex-start;flex-direction:column}.projects{grid-template-columns:1fr}.project-art{height:235px}.about{grid-template-columns:1fr;gap:20px;padding:70px 0}.contact{padding:26px;align-items:flex-start;flex-direction:column}.page-intro{padding:56px 0 32px}.page-intro h1{font-size:clamp(60px,17vw,100px)}footer{flex-direction:column}}
+
+/* Home category cards: balanced editorial row, equal heights and shared rhythm */
+.category-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:16px;margin-bottom:76px}
+.category-grid .project{display:flex;flex-direction:column;min-width:0;border-radius:3px}
+.category-grid .project-art{height:clamp(180px,21vw,260px);flex:0 0 auto}
+.category-grid .project-art .art-label{font-size:clamp(30px,3.7vw,54px);text-align:center;overflow-wrap:anywhere}
+.category-grid .project-info{display:flex;flex:1;flex-direction:column;padding:20px}
+.category-grid .project h3{font-size:clamp(21px,2vw,27px);line-height:1.08;min-height:2.15em}
+.category-grid .project p{font-size:14px;line-height:1.55}
+.category-grid .tags{margin-top:auto;padding-top:16px}
+.category-grid .project:hover{border-color:rgba(216,255,62,.6);box-shadow:0 12px 34px rgba(0,0,0,.22)}
+@media(max-width:900px){
+ .category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .category-grid .project:last-child{grid-column:1 / -1}
+ .category-grid .project:last-child .project-art{height:220px}
+}
+@media(max-width:600px){
+ .category-grid{grid-template-columns:1fr;gap:14px;margin-bottom:55px}
+ .category-grid .project:last-child{grid-column:auto}
+ .category-grid .project-art{height:220px}
+ .category-grid .project-art .art-label{font-size:48px}
+ .category-grid .project h3{min-height:0;font-size:25px}
+}
+
+
+.event-case{cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s}
+.event-case:hover{border-color:rgba(216,255,62,.65);transform:translateY(-3px);box-shadow:0 14px 35px rgba(0,0,0,.22)}
+.event-case:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.modal-backdrop{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(5,5,5,.74);backdrop-filter:blur(10px);opacity:0;visibility:hidden;transition:opacity .22s,visibility .22s}
+.modal-backdrop.open{opacity:1;visibility:visible}
+.mini-card{position:relative;width:min(560px,100%);max-height:90vh;overflow:auto;border:1px solid rgba(216,255,62,.42);background:#171717;box-shadow:0 24px 80px rgba(0,0,0,.55);transform:translateY(14px) scale(.985);transition:transform .22s}
+.modal-backdrop.open .mini-card{transform:translateY(0) scale(1)}
+.modal-close{position:absolute;right:14px;top:12px;z-index:2;width:38px;height:38px;border:1px solid rgba(255,255,255,.3);border-radius:50%;background:rgba(0,0,0,.35);color:white;font-size:28px;line-height:1;cursor:pointer}
+.mini-card-visual{height:210px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 48%,rgba(216,255,62,.13),transparent 43%),linear-gradient(135deg,#35352c,#141414)}
+.mini-card-visual:before,.mini-card-visual:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.15);border-radius:50%;width:210px;height:210px}
+.mini-card-visual:after{width:300px;height:300px}
+.mini-kicker{position:absolute;left:22px;top:20px;color:rgba(255,255,255,.58);font-size:11px;letter-spacing:.15em}
+.mini-title{font-size:clamp(42px,8vw,72px);font-weight:800;letter-spacing:-.09em;z-index:1;text-align:center}
+.mini-caption{position:absolute;bottom:18px;left:22px;color:rgba(255,255,255,.55);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.mini-card-body{padding:25px}
+.mini-card-body h2{font-size:31px;letter-spacing:-.06em;margin:12px 0}
+.mini-card-body p{color:var(--muted);line-height:1.65;margin:0}
+.mini-card-body .tags{margin-top:18px}
+.mini-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+@media(max-width:600px){.mini-card-visual{height:175px}.mini-card-body{padding:20px}.mini-card-body h2{font-size:26px}}
+
+
+.producing-case,.directing-case{cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s}
+.producing-case:hover,.directing-case:hover{border-color:rgba(216,255,62,.65);transform:translateY(-3px);box-shadow:0 14px 35px rgba(0,0,0,.22)}
+.producing-case:focus-visible,.directing-case:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+
+/* admin styles omitted in public build */ .admin-launch{margin-left:auto;border:1px solid rgba(216,255,62,.45);background:rgba(216,255,62,.07);color:var(--accent);padding:10px 14px;font-size:11px;letter-spacing:.12em;cursor:pointer}
+.admin-overlay{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.78);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:18px}
+.admin-overlay.open{display:flex}
+.admin-panel{width:min(1000px,100%);max-height:92vh;overflow:auto;background:#171717;border:1px solid #454545;padding:25px;box-shadow:0 25px 90px #000}
+.admin-head{display:flex;align-items:center;justify-content:space-between;position:relative;padding-right:48px}
+.admin-head h2{font-size:30px;letter-spacing:-.06em;margin:8px 0}
+.admin-note{color:#aaa;font-size:12px;line-height:1.5;max-width:760px}
+.admin-columns{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(300px,1.2fr);gap:24px;margin-top:22px}
+.admin-panel label{display:block;font-size:12px;color:#aaa;margin-bottom:12px}
+.admin-panel input:not([type=file]),.admin-panel textarea,.admin-panel select{display:block;width:100%;margin-top:7px;padding:11px;background:#222;color:#f4f1eb;border:1px solid #3a3a3a;border-radius:0;font:inherit;font-size:13px}
+.admin-project-list{display:grid;gap:7px;margin:12px 0;max-height:300px;overflow:auto}
+.admin-project-item{padding:12px;text-align:left;background:#222;color:#eee;border:1px solid #393939;cursor:pointer}
+.admin-project-item.active{border-color:var(--accent);color:var(--accent)}
+.admin-primary,.admin-danger,.admin-footer button,.import-button{padding:11px 14px;background:var(--accent);color:#111;border:0;font-weight:700;font-size:12px;cursor:pointer}
+.admin-danger{background:transparent;color:#ff8585;border:1px solid #673b3b}
+.admin-form{border-left:1px solid #333;padding-left:22px}
+.admin-form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.admin-status{font-size:12px;color:var(--accent);margin-top:10px}
+.admin-photo{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.admin-photo input[type=file]{max-width:100%;margin-top:8px;color:#aaa}.admin-site-fields{border-top:1px solid #333;margin-top:24px;padding-top:18px}.admin-site-fields h3{font-size:18px;margin:0 0 12px}.admin-site-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.admin-site-grid label{margin:0}.admin-photo-preview{width:100px;height:65px;object-fit:cover;border:1px solid #444;display:none}
+.admin-footer{display:flex;gap:9px;flex-wrap:wrap;border-top:1px solid #333;margin-top:22px;padding-top:16px}
+.admin-footer button,.import-button{background:#252525;color:#eee;border:1px solid #444}
+.import-button input{display:none!important}
+@media(max-width:700px){.admin-columns{grid-template-columns:1fr}.admin-form{border-left:0;border-top:1px solid #333;padding:20px 0 0}.admin-panel{padding:18px}.admin-head h2{font-size:25px}}
+
+.project-cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.82;z-index:0}.project-art .art-label,.project-art .index,.project-art .placeholder{z-index:1;position:relative}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#" onclick="showPage('home');return false">pargchvsky</a>
+  </div>
+</header>
+<main class="wrap">
+  <section class="page active" id="home">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Portfolio · 2026</div>
+        <h1>ДЕЛАЮ<br><em>ПРОЕКТЫ.</em></h1>
+        <p class="intro">Ивенты, продюсирование и режиссура. Организую процессы, собираю команды и превращаю идеи в реальные проекты.</p>
+        <button class="btn" onclick="showPage('event')">Смотреть проекты ↗</button>
+      </div>
+    </div>
+    <div class="section-head"><div><div class="eyebrow">Selected work</div><h2>Три направления.<br>Один подход.</h2></div><p>Выбери раздел, чтобы посмотреть проекты, задачи и мой вклад в результат.</p></div>
+    <div class="projects category-grid">
+      <article class="project" onclick="showPage('event')" style="cursor:pointer"><div class="project-art event"><span class="index">01 / CATEGORY</span><span class="art-label">EVENT</span><span class="placeholder">Open section ↗</span></div><div class="project-info"><div class="project-meta"><span>Организация</span><span>01</span></div><h3>События и команды</h3><p>Организация мероприятий, координация участников и работа с процессами.</p><div class="tags"><span class="tag">Event management</span><span class="tag">Coordination</span></div></div></article>
+      <article class="project" onclick="showPage('producing')" style="cursor:pointer"><div class="project-art producing"><span class="index">02 / CATEGORY</span><span class="art-label">PRODUCING</span><span class="placeholder">Open section ↗</span></div><div class="project-info"><div class="project-meta"><span>Производство</span><span>02</span></div><h3>От идеи до съёмки</h3><p>Подготовка съёмок, организация команды и решение производственных задач.</p><div class="tags"><span class="tag">Music videos</span><span class="tag">Production</span></div></div></article>
+      <article class="project" onclick="showPage('directing')" style="cursor:pointer"><div class="project-art directing"><span class="index">03 / CATEGORY</span><span class="art-label">DIRECTING</span><span class="placeholder">Open section ↗</span></div><div class="project-info"><div class="project-meta"><span>Визуальный язык</span><span>03</span></div><h3>Истории в кадре</h3><p>Режиссёрские работы, визуальные концепции и проекты, над которыми хочется работать дальше.</p><div class="tags"><span class="tag">Visual storytelling</span><span class="tag">Direction</span></div></div></article>
+    </div>
+    <section class="contact"><div><div class="eyebrow">Have a project?</div><h2>Давай обсудим.</h2><p>Открыт к предложениям о работе и сотрудничеству.</p></div><div class="contact-links"><a class="btn" href="https://t.me/" target="_blank" rel="noreferrer">Telegram ↗</a><a class="btn secondary" href="mailto:hello@example.com">Email ↗</a></div></section>
+  </section>
+
+  <section class="page" id="event">
+    <div class="page-intro"><div class="eyebrow">01 — Event</div><h1>СОБЫТИЯ<br><span>В ДВИЖЕНИИ.</span></h1><p>Организация мероприятий — это люди, сроки, логистика и десятки процессов, которые должны сойтись в один момент. Здесь будут проекты, в которых я отвечал за организацию и координацию.</p></div>
+    <div class="page-note"><strong>Кейсы для заполнения:</strong> HSE Unity — организация одного дня трёхдневного мероприятия, около 700 участников; «Посвят» — техническое направление мероприятия примерно на 450 человек. Добавим конкретные задачи, команду и результаты после уточнения твоей роли.</div>
+    <div class="projects">
+      <article class="project event-case" tabindex="0" role="button" aria-label="Открыть кейс мероприятия"><div class="project-art event"><span class="index">CASE 01</span><span class="art-label">HSE UNITY</span><span class="placeholder">Фото мероприятия</span></div><div class="project-info"><div class="project-meta"><span>Event coordination</span><span>HSE</span></div><h3>HSE Unity</h3><p>Организация одного дня трёхдневного мероприятия. Подготовка велась в течение месяца.</p><div class="tags"><span class="tag">700 участников мероприятия</span><span class="tag">Координация</span><span class="tag">Организация</span></div></div></article>
+      <article class="project event-case" tabindex="0" role="button" aria-label="Открыть кейс мероприятия"><div class="project-art event"><span class="index">CASE 02</span><span class="art-label">ПОСВЯТ</span><span class="placeholder">Фото / backstage</span></div><div class="project-info"><div class="project-meta"><span>Technical direction</span><span>Event</span></div><h3>Посвят</h3><p>Работа техническим директором мероприятия для аудитории около 450 человек.</p><div class="tags"><span class="tag">Техническая координация</span><span class="tag">Event production</span></div></div></article>
+    </div>
+  </section>
+
+  <section class="page" id="producing">
+    <div class="page-intro"><div class="eyebrow">02 — Producing</div><h1>ОТ ИДЕИ<br><span>ДО СЪЁМКИ.</span></h1><p>Продюсирование — это превратить творческую задачу в выполнимый план: собрать людей, подготовить площадку, продумать ресурсы и обеспечить движение проекта.</p></div>
+    <div class="page-note"><strong>Кейсы для заполнения:</strong> организация съёмок музыкальных клипов, включая работу над проектом с артистом ANIKV. Добавим ссылки на клипы, твою конкретную роль, этапы подготовки и список задач.</div>
+    <div class="projects">
+      <article class="project producing-case" tabindex="0" role="button" aria-label="Открыть кейс проекта"><div class="project-art producing"><span class="index">CASE 01</span><span class="art-label">MUSIC VIDEO</span><span class="placeholder">Кадр из клипа</span></div><div class="project-info"><div class="project-meta"><span>Music video production</span><span>01</span></div><h3>Продакшен музыкального клипа</h3><p>Участие в подготовке съёмки: координация организационных задач и работа с производственным процессом.</p><div class="tags"><span class="tag">Pre-production</span><span class="tag">Shoot coordination</span></div></div></article>
+      <article class="project producing-case" tabindex="0" role="button" aria-label="Открыть кейс проекта"><div class="project-art producing"><span class="index">CASE 02</span><span class="art-label">BACKSTAGE</span><span class="placeholder">Фото со съёмочной площадки</span></div><div class="project-info"><div class="project-meta"><span>Production workflow</span><span>02</span></div><h3>Подготовка съёмочного процесса</h3><p>Отдельный кейс для проекта, где можно показать подготовку, команду, оборудование, тайминг и решённые задачи.</p><div class="tags"><span class="tag">Planning</span><span class="tag">Budgeting</span><span class="tag">Teamwork</span></div></div></article>
+    </div>
+  </section>
+
+  <section class="page" id="directing">
+    <div class="page-intro"><div class="eyebrow">03 — Directing</div><h1>ИСТОРИИ<br><span>В КАДРЕ.</span></h1><p>Визуальные идеи, работа с атмосферой и построение истории. В этом разделе соберём режиссёрские работы, музыкальные клипы, раскадровки и концепции.</p></div>
+    <div class="page-note"><strong>Здесь нужны твои авторские материалы:</strong> ссылки на клипы или видео, в которых ты выступал режиссёром, режиссёрские концепции, раскадровки и moodboard. Если в проекте ты был продюсером, а не режиссёром, укажем это точно.</div>
+    <div class="projects">
+      <article class="project directing-case" tabindex="0" role="button" aria-label="Открыть кейс проекта"><div class="project-art directing"><span class="index">CASE 01</span><span class="art-label">FILM / CLIP</span><span class="placeholder">Вставить видео</span></div><div class="project-info"><div class="project-meta"><span>Direction</span><span>01</span></div><h3>Режиссёрская работа</h3><p>Добавь сюда клип или видео, где ты отвечал за режиссуру. Рядом укажем задачу, идею и твою роль.</p><div class="tags"><span class="tag">Concept</span><span class="tag">Visual language</span></div></div></article>
+      <article class="project directing-case" tabindex="0" role="button" aria-label="Открыть кейс проекта"><div class="project-art directing"><span class="index">CASE 02</span><span class="art-label">MOODBOARD</span><span class="placeholder">Вставить раскадровку</span></div><div class="project-info"><div class="project-meta"><span>Pre-production</span><span>02</span></div><h3>Концепция и раскадровка</h3><p>Место для визуальных референсов, режиссёрского тритмента или раскадровки проекта.</p><div class="tags"><span class="tag">Storytelling</span><span class="tag">Moodboard</span></div></div></article>
+    </div>
+  </section>
+
+<div class="modal-backdrop" id="projectModal" aria-hidden="true" onclick="closeProjectModal(event)">
+  <section class="mini-card" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+    <button class="modal-close" aria-label="Закрыть" onclick="closeProjectModal()">×</button>
+    <div class="mini-card-visual">
+      <span class="mini-kicker" id="projectModalKicker">EVENT / CASE</span>
+      <span class="mini-title" id="projectModalVisual">EVENT</span>
+      <span class="mini-caption" id="projectModalCaption">Мероприятие</span>
+    </div>
+    <div class="mini-card-body">
+      <div class="project-meta"><span id="projectModalMeta">Event project</span><span>CASE</span></div>
+      <h2 id="projectModalTitle">Название мероприятия</h2>
+      <p id="projectModalDescription">Описание кейса.</p>
+      <div class="tags" id="projectModalTags"></div>
+      <div class="mini-actions"><button class="btn secondary" onclick="closeProjectModal()">Назад к мероприятиям</button></div>
+    </div>
+  </section>
+</div>
+
+
+<div class="admin-overlay" id="adminOverlay" aria-hidden="true">
+ <section class="admin-panel">
+  <div class="admin-head"><div><div class="eyebrow">PORTFOLIO CMS / LOCAL</div><h2>Панель управления</h2></div><button class="modal-close" onclick="closeAdmin()">×</button></div>
+  <p class="admin-note">Изменения сохраняются в этом браузере. Для переноса на другой компьютер экспортируй JSON, а для обновления опубликованного сайта нужно будет выгрузить изменённый файл.</p>
+  <div class="admin-columns">
+   <div class="admin-list-col">
+    <label>Раздел</label><select id="adminCategory" onchange="refreshAdminList()"><option value="event">Event</option><option value="producing">Producing</option><option value="directing">Directing</option></select>
+    <div id="adminProjectList" class="admin-project-list"></div>
+    <button class="admin-primary" onclick="newAdminProject()">＋ Добавить проект</button>
+   </div>
+   <form id="adminForm" class="admin-form" onsubmit="saveAdminProject(event)">
+    <input type="hidden" id="adminId">
+    <label>Название проекта<input id="adminTitle" required placeholder="Например, HSE Unity"></label>
+    <label>Короткий заголовок на обложке<input id="adminCover" placeholder="EVENT / MUSIC VIDEO"></label>
+    <label>Подзаголовок / роль<input id="adminMeta" placeholder="Event coordination"></label>
+    <label>Описание<textarea id="adminDescription" rows="4" placeholder="Что это за проект и что ты делал?"></textarea></label>
+    <label>Теги через запятую<input id="adminTags" placeholder="Продюсирование, Координация"></label>
+    <label>Ссылка на проект / видео<input id="adminUrl" type="url" placeholder="https://…"></label>
+    <label>Фотография обложки — ссылка (если уже загружена)<input id="adminImage" type="url" placeholder="https://…"></label>
+    <label>Или загрузить фото с компьютера<div class="admin-photo"><input id="adminImageFile" type="file" accept="image/*" onchange="uploadProjectImage(event)"><img id="adminImagePreview" class="admin-photo-preview" alt="Предпросмотр"><button type="button" class="admin-danger" onclick="clearProjectImage()">Убрать фото</button></div></label>
+    <div class="admin-form-actions"><button class="admin-primary" type="submit">Сохранить проект</button><button type="button" class="admin-danger" onclick="deleteAdminProject()">Удалить</button></div>
+    <div id="adminStatus" class="admin-status"></div>
+   </form>
+  </div>
+  <div class="admin-site-fields">
+   <h3>Тексты и контакты сайта</h3>
+   <p class="admin-note">Здесь редактируются надписи вне карточек проектов. После изменения нажми «Сохранить тексты».</p>
+   <div class="admin-site-grid">
+    <label>Название / логотип<input id="siteBrand" value="pargchvsky"></label>
+    <label>Маленькая надпись над главным заголовком<input id="siteEyebrow" value="Portfolio · 2026"></label>
+    <label>Главный заголовок (строка 1)<input id="siteHero1" value="ДЕЛАЮ"></label>
+    <label>Главный заголовок (строка 2)<input id="siteHero2" value="ПРОЕКТЫ."></label>
+    <label>Текст под главным заголовком<input id="siteIntro" value="Ивенты, продюсирование и режиссура. Организую процессы, собираю команды и превращаю идеи в реальные проекты."></label>
+    <label>Заголовок блока направлений<input id="siteDirections" value="Три направления. Один подход."></label>
+    <label>Текст блока направлений<input id="siteDirectionsText" value="Выбери раздел, чтобы посмотреть проекты, задачи и мой вклад в результат."></label>
+    <label>Заголовок контактов<input id="siteContactTitle" value="Давай обсудим."></label>
+    <label>Текст контактов<input id="siteContactText" value="Открыт к предложениям о работе и сотрудничеству."></label>
+    <label>Ссылка Telegram<input id="siteTelegram" value="https://t.me/"></label>
+    <label>Email<input id="siteEmail" value="hello@example.com"></label>
+    <label>Текст в футере<input id="siteFooter" value="© 2026 MAXIM — PORTFOLIO"></label>
+   </div>
+   <div class="admin-form-actions"><button class="admin-primary" type="button" onclick="saveSiteText()">Сохранить тексты</button></div>
+   <div id="siteTextStatus" class="admin-status"></div>
+  </div>
+  <div class="admin-footer"><button onclick="exportAdminData()">Экспорт JSON</button><label class="import-button">Импорт JSON<input type="file" accept="application/json" onchange="importAdminData(event)"></label><button onclick="resetAdminData()">Сбросить изменения</button></div>
+ </section>
+</div>
+
+</main>
+<footer><div class="wrap" style="display:flex;justify-content:space-between;gap:20px;width:100%"><span>© 2026 MAXIM — PORTFOLIO</span><span>Event · Producing · Directing</span></div></footer>
+<script>
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
+ document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.page===id));
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>showPage(t.dataset.page)));
+function openPortfolioCase(card, category){
+ const modal=document.getElementById('projectModal'); if(!modal||!card)return;
+ const title=card.querySelector('h3')?.textContent?.trim()||'Проект';
+ const description=card.querySelector('.project-info p')?.textContent?.trim()||'';
+ const meta=card.querySelector('.project-meta span')?.textContent?.trim()||'';
+ const tags=[...card.querySelectorAll('.tag')].map(t=>t.textContent.trim());
+ const labels={event:{visual:'EVENT',caption:'Мероприятие · Организация'},producing:{visual:'PRODUCING',caption:'Продюсирование · Производство'},directing:{visual:'DIRECTING',caption:'Режиссура · Визуальная история'}};
+ const info=labels[category]||labels.event;
+ document.getElementById('projectModalTitle').textContent=title;
+ document.getElementById('projectModalDescription').textContent=description;
+ document.getElementById('projectModalMeta').textContent=meta;
+ document.getElementById('projectModalVisual').textContent=info.visual;
+ document.getElementById('projectModalKicker').textContent=category.toUpperCase()+' / CASE';
+ document.getElementById('projectModalCaption').textContent=info.caption;
+ const tagBox=document.getElementById('projectModalTags');tagBox.replaceChildren();
+ tags.forEach(label=>{const span=document.createElement('span');span.className='tag';span.textContent=label;tagBox.appendChild(span)});
+ modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+}
+function closeProjectModal(event){const modal=document.getElementById('projectModal');if(!modal)return;if(event&&event.target!==modal)return;modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+[['.event-case','event'],['.producing-case','producing'],['.directing-case','directing']].forEach(([selector,category])=>{
+ document.querySelectorAll(selector).forEach(card=>{card.addEventListener('click',()=>openPortfolioCase(card,category));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPortfolioCase(card,category);}});});
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProjectModal()});
+</script>
+</body>
+</html>
