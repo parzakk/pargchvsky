@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Админка — pargchvsky</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{color-scheme:dark;--bg:#101010;--panel:#191919;--line:#333;--text:#f3f0e8;--muted:#aaa;--accent:#d5ff45}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,Arial,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.wrap{width:min(1100px,calc(100% - 36px));margin:auto}.top{padding:24px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.brand{font-weight:800;letter-spacing:-.04em;font-size:20px}.muted{color:var(--muted)}.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;margin:32px 0}.login{max-width:440px;margin:10vh auto}.field{display:grid;gap:7px;margin:14px 0}.field label{font-size:13px;color:var(--muted)}input,textarea,select{width:100%;background:#101010;color:var(--text);border:1px solid #444;border-radius:9px;padding:12px}textarea{min-height:100px;resize:vertical}.btn{border:0;border-radius:999px;background:var(--accent);color:#111;font-weight:750;padding:12px 18px}.btn.secondary{background:transparent;color:var(--text);border:1px solid #555}.btn.danger{background:#542b2b;color:#fff}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.hidden{display:none!important}.project{border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;display:flex;justify-content:space-between;gap:15px;align-items:center}.project h3{margin:0}.status{font-size:12px;color:var(--muted)}.thumb{width:64px;height:64px;object-fit:cover;border-radius:8px;background:#333}.notice{padding:12px;border:1px solid #555;border-radius:10px;margin:12px 0;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap}@media(max-width:650px){.grid{grid-template-columns:1fr}.panel{padding:18px}.project{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header class="wrap top"><div class="brand">pargchvsky <span class="muted">/ admin</span></div><a class="muted" href="./">← На сайт</a></header>
+<main class="wrap">
+<section id="login" class="panel login">
+<h1>Вход в админку</h1><p class="muted">Авторизуйся своим аккаунтом администратора.</p>
+<form id="loginForm">
+<div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required></div>
+<div class="field"><label for="password">Пароль</label><input id="password" type="password" autocomplete="current-password" required></div>
+<button class="btn" type="submit">Войти</button>
+</form><div id="loginMsg" class="notice hidden"></div>
+</section>
+<section id="app" class="hidden">
+<div class="row" style="justify-content:space-between;margin:32px 0 18px"><div><h1 style="margin:0">Проекты</h1><div class="muted" id="userLabel"></div></div><button id="logout" class="btn secondary">Выйти</button></div>
+<div class="panel">
+<div class="row" style="justify-content:space-between"><h2 id="formTitle" style="margin:0">Новый проект</h2><button id="newProject" class="btn secondary">+ Новый проект</button></div>
+<form id="projectForm">
+<input id="projectId" type="hidden">
+<div class="grid">
+<div class="field"><label for="category">Направление</label><select id="category" required><option value="events">Мероприятия</option><option value="producing">Продюсирование</option><option value="directing">Режиссура и съёмка</option></select></div>
+<div class="field"><label for="title">Название проекта</label><input id="title" required placeholder="Например, HSE Unity"></div>
+</div>
+<div class="field"><label for="description">Краткое описание</label><textarea id="description" placeholder="О чём проект"></textarea></div>
+<div class="grid">
+<div class="field"><label for="role">Моя роль</label><input id="role" placeholder="Например, технический директор"></div>
+<div class="field"><label for="result">Результат</label><input id="result" placeholder="Например, 700 участников"></div>
+</div>
+<div class="field"><label for="tasks">Задачи и вклад</label><textarea id="tasks" placeholder="Что именно ты делал"></textarea></div>
+<div class="grid">
+<div class="field"><label for="cover">Обложка проекта</label><input id="cover" type="file" accept="image/*"></div>
+<div class="field"><label for="video">Ссылка на видео (необязательно)</label><input id="video" type="url" placeholder="https://..."></div>
+</div>
+<div id="coverPreview" class="muted"></div>
+<div class="field"><label><input id="published" type="checkbox" style="width:auto;margin-right:8px">Опубликовать на сайте</label></div>
+<div class="row"><button class="btn" type="submit">Сохранить проект</button><button class="btn secondary" type="button" id="cancelEdit">Очистить</button></div>
+</form><div id="formMsg" class="notice hidden"></div>
+</div>
+<div class="panel"><h2>Все проекты</h2><div id="projectsList" class="muted">Загрузка…</div></div>
+</section>
+</main>
+<script>
+const SUPABASE_URL='https://gccrdvexzfihtzozxqfk.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_XUdqO9b1FraH5PHWpuRj6g_omlMN7Z5';
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+const $=id=>document.getElementById(id);
+function message(id,text){$(id).textContent=text;$(id).classList.remove('hidden')}
+function clearForm(){ $('projectForm').reset();$('projectId').value='';$('formTitle').textContent='Новый проект';$('coverPreview').textContent='';$('formMsg').classList.add('hidden');}
+async function checkSession(){
+ const {data:{session}}=await db.auth.getSession();
+ if(!session){$('login').classList.remove('hidden');$('app').classList.add('hidden');return;}
+ const {data:admin,error}=await db.from('portfolio_admins').select('user_id').eq('user_id',session.user.id).maybeSingle();
+ if(error||!admin){await db.auth.signOut();$('login').classList.remove('hidden');$('app').classList.add('hidden');message('loginMsg','У этого аккаунта нет прав администратора.');return;}
+ $('login').classList.add('hidden');$('app').classList.remove('hidden');$('userLabel').textContent=session.user.email;await loadProjects();
+}
+$('loginForm').addEventListener('submit',async e=>{e.preventDefault();$('loginMsg').classList.add('hidden');const {error}=await db.auth.signInWithPassword({email:$('email').value,password:$('password').value});if(error){message('loginMsg',error.message);return;}await checkSession();});
+$('logout').addEventListener('click',async()=>{await db.auth.signOut();location.reload();});
+$('newProject').addEventListener('click',clearForm);$('cancelEdit').addEventListener('click',clearForm);
+async function loadProjects(){
+ const {data,error}=await db.from('portfolio_projects').select('*').order('sort_order').order('created_at',{ascending:false});
+ if(error){$('projectsList').textContent='Ошибка загрузки: '+error.message;return;}
+ if(!data.length){$('projectsList').textContent='Пока проектов нет. Создай первый выше.';return;}
+ $('projectsList').innerHTML='';
+ for(const p of data){const item=document.createElement('div');item.className='project';const left=document.createElement('div');left.style.display='flex';left.style.gap='12px';left.style.alignItems='center';if(p.cover_path){const img=document.createElement('img');img.className='thumb';img.src=db.storage.from('portfolio-media').getPublicUrl(p.cover_path).data.publicUrl;left.append(img);}const info=document.createElement('div');const h=document.createElement('h3');h.textContent=p.title;const meta=document.createElement('div');meta.className='status';meta.textContent=p.category+' · '+(p.published?'Опубликован':'Черновик');info.append(h,meta);left.append(info);const actions=document.createElement('div');actions.className='actions';const edit=document.createElement('button');edit.className='btn secondary';edit.textContent='Изменить';edit.onclick=()=>editProject(p);const del=document.createElement('button');del.className='btn danger';del.textContent='Удалить';del.onclick=()=>deleteProject(p);actions.append(edit,del);item.append(left,actions);$('projectsList').append(item);}
+}
+function editProject(p){$('projectId').value=p.id;$('category').value=p.category;$('title').value=p.title;$('description').value=p.description||'';$('role').value=p.role||'';$('result').value=p.result||'';$('tasks').value=p.tasks||'';$('video').value=p.video_url||'';$('published').checked=p.published;$('formTitle').textContent='Редактировать проект';$('coverPreview').textContent=p.cover_path?'Текущая обложка: '+p.cover_path:'';window.scrollTo({top:0,behavior:'smooth'});}
+$('projectForm').addEventListener('submit',async e=>{
+ e.preventDefault();$('formMsg').classList.add('hidden');
+ const id=$('projectId').value;let coverPath=null;
+ const file=$('cover').files[0];
+ if(file){const ext=(file.name.split('.').pop()||'jpg').toLowerCase();coverPath=(crypto.randomUUID()+'.'+ext);const {error}=await db.storage.from('portfolio-media').upload(coverPath,file,{upsert:false,contentType:file.type});if(error){message('formMsg','Ошибка загрузки файла: '+error.message);return;}}
+ const payload={category:$('category').value,title:$('title').value.trim(),slug:$('title').value.trim().toLowerCase().replace(/[^a-z0-9а-яё]+/gi,'-').replace(/^-|-$/g,''),description:$('description').value,role:$('role').value,tasks:$('tasks').value,result:$('result').value,video_url:$('video').value, published:$('published').checked,updated_at:new Date().toISOString()};
+ if(coverPath)payload.cover_path=coverPath;
+ let result;
+ if(id)result=await db.from('portfolio_projects').update(payload).eq('id',id);else result=await db.from('portfolio_projects').insert(payload);
+ if(result.error){message('formMsg','Ошибка сохранения: '+result.error.message);return;}
+ message('formMsg','Проект сохранён.');clearForm();await loadProjects();
+});
+async function deleteProject(p){if(!confirm('Удалить проект «'+p.title+'»?'))return;const {error}=await db.from('portfolio_projects').delete().eq('id',p.id);if(error){alert(error.message);return;}if(p.cover_path)await db.storage.from('portfolio-media').remove([p.cover_path]);await loadProjects();}
+db.auth.onAuthStateChange(()=>{setTimeout(checkSession,0);});
+checkSession();
+</script>
+</body></html>
