@@ -217,12 +217,27 @@ nav{display:flex;gap:8px;align-items:center}.tab{border:1px solid transparent;co
 </main>
 <footer><div class="wrap" style="display:flex;justify-content:space-between;gap:20px;width:100%"><span>© 2026 MAXIM — PORTFOLIO</span><span>Event · Producing · Directing</span></div></footer>
 <script>
-function showPage(id){
+function showPage(id, options={}){
+ const valid=['home','event','producing','directing'];
+ if(!valid.includes(id))return;
+ const current=document.querySelector('.page.active')?.id||'home';
+ if(current===id)return;
  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.page===id));
+ if(!options.fromHistory){
+  history.pushState({portfolioPage:id},'',id==='home'?location.pathname+location.search:'#'+id);
+ }
  window.scrollTo({top:0,behavior:'smooth'});
 }
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>showPage(t.dataset.page)));
+const initialPage=['home','event','producing','directing'].includes(location.hash.slice(1))?location.hash.slice(1):'home';
+document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===initialPage));
+document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.page===initialPage));
+history.replaceState({portfolioPage:initialPage},'',initialPage==='home'?location.pathname+location.search:'#'+initialPage);
+window.addEventListener('popstate',event=>{
+ const page=event.state?.portfolioPage||'home';
+ showPage(page,{fromHistory:true});
+});
 function openPortfolioCase(card, category){
  const modal=document.getElementById('projectModal'); if(!modal||!card)return;
  const title=card.querySelector('h3')?.textContent?.trim()||'Проект';
@@ -247,14 +262,6 @@ function closeProjectModal(event){const modal=document.getElementById('projectMo
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProjectModal()});
 
-const pageOrder=["home","event","producing","directing"];
-let lastPageGesture=0;
-function movePage(direction){const active=document.querySelector(".page.active");if(!active)return;const index=pageOrder.indexOf(active.id),next=Math.max(0,Math.min(pageOrder.length-1,index+direction));if(next!==index)showPage(pageOrder[next]);}
-let touchStartX=0,touchStartY=0;
-document.addEventListener("touchstart",e=>{if(e.touches.length===1){touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY;}},{passive:true});
-document.addEventListener("touchend",e=>{if(!touchStartX&&!touchStartY)return;const dx=e.changedTouches[0].clientX-touchStartX,dy=e.changedTouches[0].clientY-touchStartY;if(Math.abs(dx)>65&&Math.abs(dx)>Math.abs(dy)*1.25)movePage(dx<0?1:-1);touchStartX=0;touchStartY=0;},{passive:true});
-window.addEventListener("wheel",e=>{if(document.querySelector(".mini-card.open"))return;const now=Date.now();if(now-lastPageGesture<700)return;const active=document.querySelector(".page.active");if(!active)return;const top=window.scrollY<8,bottom=window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-8;let direction=0;if(Math.abs(e.deltaX)>Math.abs(e.deltaY)*1.2)direction=e.deltaX>0?1:-1;else if(e.shiftKey)direction=e.deltaY>0?1:-1;else if(e.deltaY<0&&top)direction=-1;else if(e.deltaY>0&&bottom)direction=1;if(direction){lastPageGesture=now;movePage(direction);}},{passive:true});
-document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")movePage(-1);if(e.key==="ArrowRight")movePage(1);});
 </script>
 </body>
 </html>
