@@ -93,6 +93,15 @@ nav{display:flex;gap:8px;align-items:center}.tab{border:1px solid transparent;co
 @media(max-width:700px){.admin-columns{grid-template-columns:1fr}.admin-form{border-left:0;border-top:1px solid #333;padding:20px 0 0}.admin-panel{padding:18px}.admin-head h2{font-size:25px}}
 
 .project-cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.82;z-index:0}.project-art .art-label,.project-art .index,.project-art .placeholder{z-index:1;position:relative}
+
+/* Published CMS projects: below editorial sample cards */
+.dynamic-projects{margin-top:30px;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.dynamic-projects .project-art{height:210px}
+.dynamic-projects .project-info{padding:18px}
+.dynamic-projects .project h3{font-size:23px}
+@media(max-width:900px){.dynamic-projects{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
+@media(max-width:600px){.dynamic-projects{grid-template-columns:1fr;gap:16px;margin-top:22px}.dynamic-projects .project-art{height:200px}}
+
 </style>
 </head>
 <body>
@@ -122,31 +131,31 @@ nav{display:flex;gap:8px;align-items:center}.tab{border:1px solid transparent;co
   <section class="page" id="event">
     <div class="page-intro"><div class="eyebrow">01 — Event</div><h1>СОБЫТИЯ<br><span>В ДВИЖЕНИИ.</span></h1><p>Организация мероприятий — это люди, сроки, логистика и десятки процессов, которые должны сойтись в один момент. Здесь будут проекты, в которых я отвечал за организацию и координацию.</p></div>
     
-    <div class="projects" id="dynamic-events"></div>
     <div class="projects">
       <article class="project event-case" tabindex="0" role="button" aria-label="Открыть кейс мероприятия"><div class="project-art event"><span class="index">CASE 01</span><span class="art-label">HSE UNITY</span><span class="placeholder">Фото мероприятия</span></div><div class="project-info"><div class="project-meta"><span>Event coordination</span><span>HSE</span></div><h3>HSE Unity</h3><p>Организация одного дня трёхдневного мероприятия. Подготовка велась в течение месяца.</p><div class="tags"><span class="tag">700 участников мероприятия</span><span class="tag">Координация</span><span class="tag">Организация</span></div></div></article>
       <article class="project event-case" tabindex="0" role="button" aria-label="Открыть кейс мероприятия"><div class="project-art event"><span class="index">CASE 02</span><span class="art-label">ПОСВЯТ</span><span class="placeholder">Фото / backstage</span></div><div class="project-info"><div class="project-meta"><span>Technical direction</span><span>Event</span></div><h3>Посвят</h3><p>Работа техническим директором мероприятия для аудитории около 450 человек.</p><div class="tags"><span class="tag">Техническая координация</span><span class="tag">Event production</span></div></div></article>
     </div>
+      <div class="projects dynamic-projects" id="dynamic-events"></div>
   </section>
 
   <section class="page" id="producing">
     <div class="page-intro"><div class="eyebrow">02 — Producing</div><h1>ОТ ИДЕИ<br><span>ДО СЪЁМКИ.</span></h1><p>Продюсирование — это превратить творческую задачу в выполнимый план: собрать людей, подготовить площадку, продумать ресурсы и обеспечить движение проекта.</p></div>
     
-    <div class="projects" id="dynamic-producing"></div>
     <div class="projects">
       <article class="project producing-case" tabindex="0" role="button" aria-label="Открыть кейс проекта"><div class="project-art producing"><span class="index">CASE 01</span><span class="art-label">MUSIC VIDEO</span><span class="placeholder">Кадр из клипа</span></div><div class="project-info"><div class="project-meta"><span>Music video production</span><span>01</span></div><h3>Продакшен музыкального клипа</h3><p>Участие в подготовке съёмки: координация организационных задач и работа с производственным процессом.</p><div class="tags"><span class="tag">Pre-production</span><span class="tag">Shoot coordination</span></div></div></article>
       <article class="project producing-case" tabindex="0" role="button" aria-label="Открыть кейс проекта"><div class="project-art producing"><span class="index">CASE 02</span><span class="art-label">BACKSTAGE</span><span class="placeholder">Фото со съёмочной площадки</span></div><div class="project-info"><div class="project-meta"><span>Production workflow</span><span>02</span></div><h3>Подготовка съёмочного процесса</h3><p>Отдельный кейс для проекта, где можно показать подготовку, команду, оборудование, тайминг и решённые задачи.</p><div class="tags"><span class="tag">Planning</span><span class="tag">Budgeting</span><span class="tag">Teamwork</span></div></div></article>
     </div>
+      <div class="projects dynamic-projects" id="dynamic-producing"></div>
   </section>
 
   <section class="page" id="directing">
     <div class="page-intro"><div class="eyebrow">03 — Directing</div><h1>ИСТОРИИ<br><span>В КАДРЕ.</span></h1><p>Визуальные идеи, работа с атмосферой и построение истории. В этом разделе соберём режиссёрские работы, музыкальные клипы, раскадровки и концепции.</p></div>
     
-    <div class="projects" id="dynamic-directing"></div>
     <div class="projects">
       <article class="project directing-case" tabindex="0" role="button" aria-label="Открыть кейс проекта"><div class="project-art directing"><span class="index">CASE 01</span><span class="art-label">FILM / CLIP</span><span class="placeholder">Вставить видео</span></div><div class="project-info"><div class="project-meta"><span>Direction</span><span>01</span></div><h3>Режиссёрская работа</h3><p>Добавь сюда клип или видео, где ты отвечал за режиссуру. Рядом укажем задачу, идею и твою роль.</p><div class="tags"><span class="tag">Concept</span><span class="tag">Visual language</span></div></div></article>
       <article class="project directing-case" tabindex="0" role="button" aria-label="Открыть кейс проекта"><div class="project-art directing"><span class="index">CASE 02</span><span class="art-label">MOODBOARD</span><span class="placeholder">Вставить раскадровку</span></div><div class="project-info"><div class="project-meta"><span>Pre-production</span><span>02</span></div><h3>Концепция и раскадровка</h3><p>Место для визуальных референсов, режиссёрского тритмента или раскадровки проекта.</p><div class="tags"><span class="tag">Storytelling</span><span class="tag">Moodboard</span></div></div></article>
     </div>
+      <div class="projects dynamic-projects" id="dynamic-directing"></div>
   </section>
 
 <div class="modal-backdrop" id="projectModal" aria-hidden="true" onclick="closeProjectModal(event)">
