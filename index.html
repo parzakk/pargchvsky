@@ -300,7 +300,8 @@ function openPortfolioCase(card, category){
  const labels={event:{visual:'EVENT',caption:'Мероприятие · Организация'},producing:{visual:'PRODUCING',caption:'Продюсирование · Производство'},directing:{visual:'DIRECTING',caption:'Режиссура · Визуальная история'}};
  const info=labels[category]||labels.event;
  document.getElementById('projectModalTitle').textContent=title;
- document.getElementById('projectModalDescription').textContent=description;\n const video=card.dataset.projectVideo||''; const actions=document.querySelector('.mini-actions'); actions.querySelectorAll('.project-video-link').forEach(el=>el.remove()); if(video){const link=document.createElement('a');link.className='btn project-video-link';link.href=video;link.target='_blank';link.rel='noreferrer';link.textContent='Открыть проект ↗';actions.appendChild(link);}
+ document.getElementById('projectModalDescription').textContent=description;
+ const video=card.dataset.projectVideo||''; const actions=document.querySelector('.mini-actions'); actions.querySelectorAll('.project-video-link').forEach(el=>el.remove()); if(video){const link=document.createElement('a');link.className='btn project-video-link';link.href=video;link.target='_blank';link.rel='noreferrer';link.textContent='Открыть проект ↗';actions.appendChild(link);}
  document.getElementById('projectModalMeta').textContent=meta;
  document.getElementById('projectModalVisual').textContent=info.visual;
  document.getElementById('projectModalKicker').textContent=category.toUpperCase()+' / CASE';
