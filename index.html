@@ -90,7 +90,7 @@ nav{display:flex;gap:8px;align-items:center}.tab{border:1px solid transparent;co
 .import-button input{display:none!important}
 @media(max-width:700px){.admin-columns{grid-template-columns:1fr}.admin-form{border-left:0;border-top:1px solid #333;padding:20px 0 0}.admin-panel{padding:18px}.admin-head h2{font-size:25px}}
 
-.project-cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.82;z-index:0}.project-art .art-label,.project-art .index,.project-art .placeholder{z-index:1;position:relative}
+.project-cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.82;z-index:0}.category-cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.88;z-index:0}.category-grid .project-art:has(.category-cover-img) .art-label,.category-grid .project-art:has(.category-cover-img) .index,.category-grid .project-art:has(.category-cover-img) .placeholder{display:none}.project-art .art-label,.project-art .index,.project-art .placeholder{z-index:1;position:relative}
 
 /* Published CMS projects: below editorial sample cards */
 .dynamic-projects{margin-top:30px;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
@@ -153,7 +153,7 @@ nav{display:flex;gap:8px;align-items:center}.tab{border:1px solid transparent;co
   </section>
 
   <section class="page" id="producing">
-    <div class="page-intro"><div class="eyebrow">02 — Producing</div><h1>ОТ ИДЕИ<br><span>ДО СЪЁМКИ.</span></h1><p>Продюсирование — это превратить творческую задачу в выполнимый план: собрать людей, подготовить площадку, продумать ресурсы и обеспечить движение проекта.</p></div>
+    <div class="page-intro"><div class="eyebrow">02 — Producing</div><h1>ОТ ИДЕИ<br><span>ДО СЪЁМКИ.</span></h1><p>Здесь — проекты, в которых я занимался подготовкой съёмок, организацией работы команды и решением задач на разных этапах производства.</p></div>
     
     
       <div class="projects dynamic-projects" id="dynamic-producing"></div>
@@ -284,6 +284,15 @@ async function loadPublishedProjects(){
  if(error){console.error('Не удалось загрузить проекты из Supabase:',error.message);return;}
  document.querySelectorAll('#dynamic-events,#dynamic-producing,#dynamic-directing').forEach(el=>el.replaceChildren());
  (data||[]).forEach(renderPublishedProject);
+ const categoryTiles={events:'.category-grid .project-art.event',producing:'.category-grid .project-art.producing',directing:'.category-grid .project-art.directing'};
+ Object.entries(categoryTiles).forEach(([category,selector])=>{
+  const first=(data||[]).find(project=>project.category===category&&project.cover_path);
+  const tile=document.querySelector(selector);
+  if(first&&tile){
+   const {data:coverData}=portfolioDb.storage.from('portfolio-media').getPublicUrl(first.cover_path);
+   if(coverData?.publicUrl){const img=document.createElement('img');img.className='category-cover-img';img.src=coverData.publicUrl;img.alt='';img.loading='lazy';tile.prepend(img);}
+  }
+ });
 }
 loadPublishedProjects();
 
