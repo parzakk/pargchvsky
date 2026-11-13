@@ -130,14 +130,14 @@ nav{display:flex;gap:8px;align-items:center}.tab{border:1px solid transparent;co
       <div>
         <div class="eyebrow">Portfolio · 2026</div>
         <h1>МАХИМ<br><em>ПАРГЧВСКИ.</em></h1>
-        <p class="intro">Ивенты, продюсирование и режиссура. Организую процессы, собираю команды и превращаю идеи в реальные проекты.</p>
+        <p class="intro">Мероприятия, продюсирование и аудиовизуальные проекты. Организую процессы, собираю команды и работаю над проектами на разных этапах производства.</p>
       </div>
     </div>
     <div class="section-head"><div><div class="eyebrow">Мои работы</div><h2>Мои работы.</h2></div></div>
     <div class="projects category-grid">
       <article class="project" onclick="showPage('event')" style="cursor:pointer"><div class="project-art event"><span class="index">01 / CATEGORY</span><span class="art-label">МЕРОПРИЯТИЯ</span><span class="placeholder">Open section ↗</span></div><div class="project-info"><div class="project-meta"><span>Мероприятия</span><span>01</span></div><h3>Мероприятия</h3><p>Организация мероприятий, координация участников и работа с процессами.</p><div class="tags"><span class="tag">Event management</span><span class="tag">Coordination</span></div></div></article>
       <article class="project" onclick="showPage('producing')" style="cursor:pointer"><div class="project-art producing"><span class="index">02 / CATEGORY</span><span class="art-label">ПРОДЮСИРОВАНИЕ</span><span class="placeholder">Open section ↗</span></div><div class="project-info"><div class="project-meta"><span>Продюсирование</span><span>02</span></div><h3>Продюсирование</h3><p>Подготовка съёмок, организация команды и решение производственных задач.</p><div class="tags"><span class="tag">Music videos</span><span class="tag">Production</span></div></div></article>
-      <article class="project" onclick="showPage('directing')" style="cursor:pointer"><div class="project-art directing"><span class="index">03 / CATEGORY</span><span class="art-label">РЕЖИССУРА<br>И СЪЁМКА</span><span class="placeholder">Open section ↗</span></div><div class="project-info"><div class="project-meta"><span>Режиссура и съёмка</span><span>03</span></div><h3>Режиссура и съёмка</h3><p>Режиссёрские работы, визуальные концепции и проекты, над которыми хочется работать дальше.</p><div class="tags"><span class="tag">Visual storytelling</span><span class="tag">Direction</span></div></div></article>
+      <article class="project" onclick="showPage('directing')" style="cursor:pointer"><div class="project-art directing"><span class="index">03 / CATEGORY</span><span class="art-label">АУДИОВИЗУАЛЬНЫЕ<br>ПРОЕКТЫ</span><span class="placeholder">Open section ↗</span></div><div class="project-info"><div class="project-meta"><span>Аудиовизуальные проекты</span><span>03</span></div><h3>Аудиовизуальные проекты</h3><p>Режиссёрские работы, визуальные концепции и проекты, над которыми хочется работать дальше.</p><div class="tags"><span class="tag">Visual storytelling</span><span class="tag">Direction</span></div></div></article>
     </div>
     <section class="contact"><div><div class="eyebrow">Have a project?</div><h2>Давай обсудим.</h2><p>Открыт к предложениям о работе и сотрудничеству.</p></div><div class="contact-links"><a class="btn" href="https://t.me/" target="_blank" rel="noreferrer">Telegram ↗</a><a class="btn secondary" href="mailto:hello@example.com">Email ↗</a></div></section>
   </section>
@@ -157,7 +157,7 @@ nav{display:flex;gap:8px;align-items:center}.tab{border:1px solid transparent;co
   </section>
 
   <section class="page" id="directing">
-    <div class="page-intro"><div class="eyebrow">03 — Directing</div><h1>ИСТОРИИ<br><span>В КАДРЕ.</span></h1><p>Визуальные идеи, работа с атмосферой и построение истории. В этом разделе соберём режиссёрские работы, музыкальные клипы, раскадровки и концепции.</p></div>
+    <div class="page-intro"><div class="eyebrow">03 — Directing</div><h1>ИСТОРИИ<br><span>В КАДРЕ.</span></h1><p>Работы в кино и видеопроизводстве: режиссура, звук, монтаж, работа на площадке и ассистирование.</p></div>
     
     
       <div class="projects dynamic-projects" id="dynamic-directing"></div>
@@ -214,7 +214,7 @@ nav{display:flex;gap:8px;align-items:center}.tab{border:1px solid transparent;co
     <label>Маленькая надпись над главным заголовком<input id="siteEyebrow" value="Portfolio · 2026"></label>
     <label>Главный заголовок (строка 1)<input id="siteHero1" value="ДЕЛАЮ"></label>
     <label>Главный заголовок (строка 2)<input id="siteHero2" value="ПРОЕКТЫ."></label>
-    <label>Текст под главным заголовком<input id="siteIntro" value="Ивенты, продюсирование и режиссура. Организую процессы, собираю команды и превращаю идеи в реальные проекты."></label>
+    <label>Текст под главным заголовком<input id="siteIntro" value="Мероприятия, продюсирование и аудиовизуальные проекты. Организую процессы, собираю команды и работаю над проектами на разных этапах производства."></label>
     <label>Заголовок блока направлений<input id="siteDirections" value="Три направления. Один подход."></label>
     <label>Текст блока направлений<input id="siteDirectionsText" value="Выбери раздел, чтобы посмотреть проекты, задачи и мой вклад в результат."></label>
     <label>Заголовок контактов<input id="siteContactTitle" value="Давай обсудим."></label>
@@ -240,7 +240,7 @@ const portfolioDb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE
 const portfolioCategoryConfig={
  events:{container:'dynamic-events',className:'event-case',visual:'EVENT',label:'Мероприятие · Организация'},
  producing:{container:'dynamic-producing',className:'producing-case',visual:'PRODUCING',label:'Продюсирование · Производство'},
- directing:{container:'dynamic-directing',className:'directing-case',visual:'DIRECTING',label:'Режиссура · Визуальная история'}
+ directing:{container:'dynamic-directing',className:'directing-case',visual:'DIRECTING',label:'Аудиовизуальные проекты'}
 };
 function addText(parent,tag,className,value){
  const el=document.createElement(tag); if(className)el.className=className;el.textContent=value||'';parent.appendChild(el);return el;
@@ -313,7 +313,7 @@ function openPortfolioCase(card, category){
  const description=card.dataset.projectDescription||card.querySelector('.project-info p')?.textContent?.trim()||'';
  const meta=card.dataset.projectMeta||card.querySelector('.project-meta span')?.textContent?.trim()||'';
  const tags=[...card.querySelectorAll('.tag')].map(t=>t.textContent.trim());
- const labels={event:{visual:'EVENT',caption:'Мероприятие · Организация'},producing:{visual:'PRODUCING',caption:'Продюсирование · Производство'},directing:{visual:'DIRECTING',caption:'Режиссура · Визуальная история'}};
+ const labels={event:{visual:'EVENT',caption:'Мероприятие · Организация'},producing:{visual:'PRODUCING',caption:'Продюсирование · Производство'},directing:{visual:'DIRECTING',caption:'Аудиовизуальные проекты'}};
  const info=labels[category]||labels.event;
  const modalVisual=document.querySelector('.mini-card-visual');
  modalVisual.querySelectorAll('.modal-cover-img').forEach(el=>el.remove());
