@@ -112,8 +112,8 @@ function editProject(p){$('projectId').value=p.id;$('category').value=p.category
 $('projectForm').addEventListener('submit',async e=>{
  e.preventDefault();$('formMsg').classList.add('hidden');
  const id=$('projectId').value;let coverPath=null;
- const file=$('cover').files[0];
- if(file){const ext=(file.name.split('.').pop()||'jpg').toLowerCase();coverPath=(crypto.randomUUID()+'.'+ext);const {error}=await db.storage.from('portfolio-media').upload(coverPath,file,{upsert:false,contentType:file.type});if(error){message('formMsg','Ошибка загрузки файла: '+error.message);return;}}
+ let file=$('cover').files[0];
+ if(file){file=await makeCroppedCover(file);coverPath=(crypto.randomUUID()+'.jpg');const {error}=await db.storage.from('portfolio-media').upload(coverPath,file,{upsert:false,contentType:'image/jpeg'});if(error){message('formMsg','Ошибка загрузки файла: '+error.message);return;}}
  const payload={category:$('category').value,title:$('title').value.trim(),slug:$('title').value.trim().toLowerCase().replace(/[^a-z0-9а-яё]+/gi,'-').replace(/^-|-$/g,''),description:$('description').value,role:roleTags.join(', '),tasks:'',result:$('result').value,video_url:$('video').value, published:$('published').checked,updated_at:new Date().toISOString()};
  if(coverPath)payload.cover_path=coverPath;
  let result;
