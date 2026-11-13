@@ -102,6 +102,20 @@ nav{display:flex;gap:8px;align-items:center}.tab{border:1px solid transparent;co
 @media(max-width:900px){.dynamic-projects{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
 @media(max-width:600px){.dynamic-projects{grid-template-columns:1fr;gap:16px;margin-top:22px}.dynamic-projects .project-art{height:200px}}
 
+
+/* Real project photography: keep titles in the information panel, not over images */
+.project-art:has(.project-cover-img) .art-label,
+.project-art:has(.project-cover-img) .placeholder,
+.project-art:has(.project-cover-img) .index{display:none}
+.project-cover-img{opacity:1}
+.mini-card-visual{position:relative;overflow:hidden}
+.mini-card-visual.has-cover{background:#111}
+.mini-card-visual .modal-cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.mini-card-visual.has-cover:before{z-index:1;pointer-events:none}
+.mini-card-visual.has-cover .mini-kicker,
+.mini-card-visual.has-cover .mini-title,
+.mini-card-visual.has-cover .mini-caption{display:none}
+
 </style>
 </head>
 <body>
@@ -240,9 +254,11 @@ function renderPublishedProject(project){
   const {data}=portfolioDb.storage.from('portfolio-media').getPublicUrl(project.cover_path);
   if(data?.publicUrl){const img=document.createElement('img');img.className='project-cover-img';img.src=data.publicUrl;img.alt=project.title;img.loading='lazy';art.appendChild(img);}
  }
- addText(art,'span','index','PROJECT / '+String(project.sort_order??'').padStart(2,'0'));
- addText(art,'span','art-label',project.title);
- if(!project.cover_path)addText(art,'span','placeholder',cfg.visual);
+ if(!project.cover_path){
+  addText(art,'span','index','PROJECT / '+String(project.sort_order??'').padStart(2,'0'));
+  addText(art,'span','art-label',project.title);
+  addText(art,'span','placeholder',cfg.visual);
+ }
  card.appendChild(art);
  const info=document.createElement('div');info.className='project-info';
  const meta=document.createElement('div');meta.className='project-meta';addText(meta,'span','',cfg.label);addText(meta,'span','',cfg.visual);info.appendChild(meta);
@@ -299,6 +315,11 @@ function openPortfolioCase(card, category){
  const tags=[...card.querySelectorAll('.tag')].map(t=>t.textContent.trim());
  const labels={event:{visual:'EVENT',caption:'Мероприятие · Организация'},producing:{visual:'PRODUCING',caption:'Продюсирование · Производство'},directing:{visual:'DIRECTING',caption:'Режиссура · Визуальная история'}};
  const info=labels[category]||labels.event;
+ const modalVisual=document.querySelector('.mini-card-visual');
+ modalVisual.querySelectorAll('.modal-cover-img').forEach(el=>el.remove());
+ const cover=card.querySelector('.project-cover-img');
+ if(cover){const img=document.createElement('img');img.className='modal-cover-img';img.src=cover.src;img.alt=title;modalVisual.prepend(img);modalVisual.classList.add('has-cover');}
+ else modalVisual.classList.remove('has-cover');
  document.getElementById('projectModalTitle').textContent=title;
  document.getElementById('projectModalDescription').textContent=description;
  const video=card.dataset.projectVideo||''; const actions=document.querySelector('.mini-actions'); actions.querySelectorAll('.project-video-link').forEach(el=>el.remove()); if(video){const link=document.createElement('a');link.className='btn project-video-link';link.href=video;link.target='_blank';link.rel='noreferrer';link.textContent='Открыть проект ↗';actions.appendChild(link);}
