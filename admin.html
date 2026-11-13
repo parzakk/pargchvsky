@@ -6,7 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{color-scheme:dark;--bg:#101010;--panel:#191919;--line:#333;--text:#f3f0e8;--muted:#aaa;--accent:#d5ff45}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,Arial,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.wrap{width:min(1100px,calc(100% - 36px));margin:auto}.top{padding:24px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.brand{font-weight:800;letter-spacing:-.04em;font-size:20px}.muted{color:var(--muted)}.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;margin:32px 0}.login{max-width:440px;margin:10vh auto}.field{display:grid;gap:7px;margin:14px 0}.field label{font-size:13px;color:var(--muted)}input,textarea,select{width:100%;background:#101010;color:var(--text);border:1px solid #444;border-radius:9px;padding:12px}textarea{min-height:100px;resize:vertical}.btn{border:0;border-radius:999px;background:var(--accent);color:#111;font-weight:750;padding:12px 18px}.btn.secondary{background:transparent;color:var(--text);border:1px solid #555}.btn.danger{background:#542b2b;color:#fff}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.hidden{display:none!important}.project{border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;display:flex;justify-content:space-between;gap:15px;align-items:center}.project h3{margin:0}.status{font-size:12px;color:var(--muted)}.thumb{width:64px;height:64px;object-fit:cover;border-radius:8px;background:#333}.role-tags{display:flex;flex-wrap:wrap;gap:7px;padding:10px;border:1px solid #444;border-radius:9px;min-height:48px;background:#101010}.role-chip{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border:1px solid #555;border-radius:999px;color:var(--text);font-size:13px}.role-chip button{border:0;background:transparent;color:#aaa;padding:0;line-height:1;font-size:16px}.role-entry{border:0!important;outline:0!important;background:transparent!important;padding:4px!important;min-width:160px;flex:1}.notice{padding:12px;border:1px solid #555;border-radius:10px;margin:12px 0;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap}@media(max-width:650px){.grid{grid-template-columns:1fr}.panel{padding:18px}.project{align-items:flex-start}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,Arial,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.wrap{width:min(1100px,calc(100% - 36px));margin:auto}.top{padding:24px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.brand{font-weight:800;letter-spacing:-.04em;font-size:20px}.muted{color:var(--muted)}.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;margin:32px 0}.login{max-width:440px;margin:10vh auto}.field{display:grid;gap:7px;margin:14px 0}.field label{font-size:13px;color:var(--muted)}input,textarea,select{width:100%;background:#101010;color:var(--text);border:1px solid #444;border-radius:9px;padding:12px}textarea{min-height:100px;resize:vertical}.btn{border:0;border-radius:999px;background:var(--accent);color:#111;font-weight:750;padding:12px 18px}.btn.secondary{background:transparent;color:var(--text);border:1px solid #555}.btn.danger{background:#542b2b;color:#fff}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.hidden{display:none!important}.project{border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;display:flex;justify-content:space-between;gap:15px;align-items:center}.project h3{margin:0}.status{font-size:12px;color:var(--muted)}.thumb{width:64px;height:64px;object-fit:cover;border-radius:8px;background:#333}.role-tags{display:flex;flex-wrap:wrap;gap:7px;padding:10px;border:1px solid #444;border-radius:9px;min-height:48px;background:#101010}.role-chip{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border:1px solid #555;border-radius:999px;color:var(--text);font-size:13px}.role-chip button{border:0;background:transparent;color:#aaa;padding:0;line-height:1;font-size:16px}.role-entry{border:0!important;outline:0!important;background:transparent!important;padding:4px!important;min-width:160px;flex:1}.crop-editor{margin-top:14px;max-width:680px}.crop-stage{position:relative;width:100%;aspect-ratio:16/9;background:#080808;border:1px solid #555;border-radius:10px;overflow:hidden;cursor:grab;touch-action:none}.crop-stage:active{cursor:grabbing}.crop-stage img{position:absolute;max-width:none;user-select:none;pointer-events:none}.crop-controls{display:flex;align-items:center;gap:14px;margin-top:10px}.crop-controls input{flex:1}.notice{padding:12px;border:1px solid #555;border-radius:10px;margin:12px 0;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap}@media(max-width:650px){.grid{grid-template-columns:1fr}.panel{padding:18px}.project{align-items:flex-start}}
 </style>
 </head>
 <body>
@@ -39,7 +39,7 @@
 <div class="field"><label for="cover">Обложка проекта</label><input id="cover" type="file" accept="image/*"></div>
 <div class="field"><label for="video">Ссылка на видео (необязательно)</label><input id="video" type="url" placeholder="https://..."></div>
 </div>
-<div id="coverPreview" class="muted"></div>
+<div id="coverPreview" class="muted"></div><div id="cropEditor" class="crop-editor hidden"><div class="status" style="margin-bottom:8px">Перетащи фото, чтобы выбрать кадр. Используй ползунок для масштабирования.</div><div id="cropStage" class="crop-stage"><img id="cropImage" alt="Предпросмотр обложки"></div><div class="crop-controls"><label for="cropZoom" class="status">Масштаб</label><input id="cropZoom" type="range" min="1" max="3" step="0.01" value="1"></div></div>
 <div class="field"><label><input id="published" type="checkbox" style="width:auto;margin-right:8px">Опубликовать на сайте</label></div>
 <div class="row"><button class="btn" type="submit">Сохранить проект</button><button class="btn secondary" type="button" id="cancelEdit">Очистить</button></div>
 </form><div id="formMsg" class="notice hidden"></div>
@@ -53,13 +53,45 @@ const SUPABASE_PUBLISHABLE_KEY='sb_publishable_XUdqO9b1FraH5PHWpuRj6g_omlMN7Z5';
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 const $=id=>document.getElementById(id);
 function message(id,text){$(id).textContent=text;$(id).classList.remove('hidden')}
-let roleTags=[];
+let roleTags=[];let cropImageLoaded=false,cropScale=1,cropBase=1,cropX=0,cropY=0,cropW=0,cropH=0,cropNaturalW=0,cropNaturalH=0,cropPointer=null;
 function renderRoleTags(){const box=$('roleTags');box.querySelectorAll('.role-chip').forEach(el=>el.remove());const input=$('roleEntry');roleTags.forEach((tag,index)=>{const chip=document.createElement('span');chip.className='role-chip';const label=document.createElement('span');label.textContent=tag;const remove=document.createElement('button');remove.type='button';remove.textContent='×';remove.setAttribute('aria-label','Удалить '+tag);remove.onclick=()=>{roleTags.splice(index,1);renderRoleTags();};chip.append(label,remove);box.insertBefore(chip,input);});}
 function addRoleTag(value){const tag=value.trim();if(tag&&!roleTags.some(x=>x.toLowerCase()===tag.toLowerCase()))roleTags.push(tag);$('roleEntry').value='';renderRoleTags();}
 $('roleEntry').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===','){e.preventDefault();addRoleTag($('roleEntry').value);}else if(e.key==='Backspace'&&!$('roleEntry').value&&roleTags.length){roleTags.pop();renderRoleTags();}});
 $('roleEntry').addEventListener('blur',()=>{if($('roleEntry').value.trim())addRoleTag($('roleEntry').value);});
-function clearForm(){ $('projectForm').reset();roleTags=[];renderRoleTags();$('projectId').value='';$('formTitle').textContent='Новый проект';$('coverPreview').textContent='';$('formMsg').classList.add('hidden');}
-async function checkSession(){
+function clearForm(){ $('projectForm').reset();roleTags=[];renderRoleTags();$('projectId').value='';$('formTitle').textContent='Новый проект';$('coverPreview').textContent='';$('cropEditor').classList.add('hidden');cropImageLoaded=false;$('formMsg').classList.add('hidden');}
+
+function layoutCrop(){
+ if(!cropImageLoaded)return;
+ const stage=$('cropStage'),img=$('cropImage');const r=stage.getBoundingClientRect();cropW=r.width;cropH=r.height;
+ cropBase=Math.max(cropW/cropNaturalW,cropH/cropNaturalH);
+ const w=cropNaturalW*cropBase*cropScale,h=cropNaturalH*cropBase*cropScale;
+ cropX=Math.min(0,Math.max(cropW-w,cropX));cropY=Math.min(0,Math.max(cropH-h,cropY));
+ img.style.width=w+'px';img.style.height=h+'px';img.style.left=cropX+'px';img.style.top=cropY+'px';
+}
+function loadCropFile(file){
+ if(!file)return;
+ const url=URL.createObjectURL(file);const img=$('cropImage');
+ img.onload=()=>{cropNaturalW=img.naturalWidth;cropNaturalH=img.naturalHeight;cropScale=1;cropX=0;cropY=0;cropImageLoaded=true;$('cropZoom').value='1';$('cropEditor').classList.remove('hidden');layoutCrop();};
+ img.src=url;
+}
+$('cover').addEventListener('change',()=>loadCropFile($('cover').files[0]));
+$('cropZoom').addEventListener('input',e=>{const old=cropScale;const next=Number(e.target.value);const cx=cropW/2,cy=cropH/2;cropX=cx-(cx-cropX)*(next/old);cropY=cy-(cy-cropY)*(next/old);cropScale=next;layoutCrop();});
+$('cropStage').addEventListener('pointerdown',e=>{cropPointer={x:e.clientX,y:e.clientY};$('cropStage').setPointerCapture(e.pointerId);});
+$('cropStage').addEventListener('pointermove',e=>{if(!cropPointer)return;cropX+=e.clientX-cropPointer.x;cropY+=e.clientY-cropPointer.y;cropPointer={x:e.clientX,y:e.clientY};layoutCrop();});
+$('cropStage').addEventListener('pointerup',()=>cropPointer=null);
+$('cropStage').addEventListener('pointercancel',()=>cropPointer=null);
+async function makeCroppedCover(file){
+ if(!cropImageLoaded)return file;
+ const scale=cropBase*cropScale;
+ const sx=Math.max(0,Math.min(cropNaturalW-cropW/scale,-cropX/scale));
+ const sy=Math.max(0,Math.min(cropNaturalH-cropH/scale,-cropY/scale));
+ const sw=Math.min(cropNaturalW-sx,cropW/scale),sh=Math.min(cropNaturalH-sy,cropH/scale);
+ const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=900;
+ const ctx=canvas.getContext('2d');ctx.drawImage($('cropImage'),sx,sy,sw,sh,0,0,1600,900);
+ const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',0.92));
+ return new File([blob],(file.name.replace(/\\.[^.]+$/,'')||'cover')+'-cover.jpg',{type:'image/jpeg'});
+}
+\nasync function checkSession(){
  const {data:{session}}=await db.auth.getSession();
  if(!session){$('login').classList.remove('hidden');$('app').classList.add('hidden');return;}
  const {data:admin,error}=await db.from('portfolio_admins').select('user_id').eq('user_id',session.user.id).maybeSingle();
