@@ -91,7 +91,8 @@ async function makeCroppedCover(file){
  const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',0.92));
  return new File([blob],(file.name.replace(/\\.[^.]+$/,'')||'cover')+'-cover.jpg',{type:'image/jpeg'});
 }
-\nasync function checkSession(){
+
+async function checkSession(){
  const {data:{session}}=await db.auth.getSession();
  if(!session){$('login').classList.remove('hidden');$('app').classList.add('hidden');return;}
  const {data:admin,error}=await db.from('portfolio_admins').select('user_id').eq('user_id',session.user.id).maybeSingle();
