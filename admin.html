@@ -133,7 +133,7 @@ async function loadProjects(){
    card.addEventListener('dragend',()=>{card.classList.remove('dragging');grid.querySelectorAll('.drag-over').forEach(el=>el.classList.remove('drag-over'));});
    card.addEventListener('dragover',e=>{e.preventDefault();if(!card.classList.contains('dragging'))card.classList.add('drag-over');});
    card.addEventListener('dragleave',()=>card.classList.remove('drag-over'));
-   card.addEventListener('drop',async e=>{e.preventDefault();card.classList.remove('drag-over');const draggedId=e.dataTransfer.getData('text/plain');const dragged=grid.querySelector('[data-id="'+draggedId+'"]');if(!dragged||dragged===card)return;const rect=card.getBoundingClientRect();const after=e.clientY>rect.top+rect.height/2;grid.insertBefore(dragged,after?card.nextSibling:card);await persistProjectOrder(grid);});
+   card.addEventListener('drop',async e=>{e.preventDefault();card.classList.remove('drag-over');const draggedId=e.dataTransfer.getData('text/plain');const dragged=grid.querySelector('[data-id="'+draggedId+'"]');if(!dragged||dragged===card)return;const rect=card.getBoundingClientRect();const draggedRect=dragged.getBoundingClientRect();const sameRow=Math.abs(draggedRect.top-rect.top)<rect.height/2;const after=sameRow?(e.clientX>rect.left+rect.width/2):(e.clientY>rect.top+rect.height/2);grid.insertBefore(dragged,after?card.nextSibling:card);await persistProjectOrder(grid);});
   });
   group.appendChild(grid);groups.appendChild(group);
  }
